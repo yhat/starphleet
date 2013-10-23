@@ -44,9 +44,7 @@ else
        sleep 1
      done
     fi
-    if [ -d "${CONTAINER_ROOT}/var/starphleet" ]; then
-      mkdir ${CONTAINER_ROOT}/var/starphleet
-    fi
+    test -d "${CONTAINER_ROOT}/var/starphleet" || mkdir -p "${CONTAINER_ROOT}/var/starphleet"
     cp `which tools` "${CONTAINER_ROOT}/tools"
     cp `which starphleet-wait-network` "${CONTAINER_ROOT}/.block"
     chmod +x "${CONTAINER_ROOT}/.block"
