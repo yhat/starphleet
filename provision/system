@@ -93,8 +93,4 @@ if [ -d /starphleet/private_keys ]; then
   cp /starphleet/private_keys/* /var/starphleet/private_keys/
 fi
 
-# unpack prebuilt yhat
-curl https://s3-us-west-1.amazonaws.com/yhat-enterprise/yhat.tgz > /var/starphleet/containers/yhat.tgz
-starphleet-lxc-restore yhat "/var/starphleet/containers/yhat.tgz"
-
 announce *Welcome to Starphleet*

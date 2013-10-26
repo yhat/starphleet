@@ -2,9 +2,9 @@
 
 #this is a script to have /starphleet itself auto update
 #bootstrap with
-#curl -L https://raw.github.com/wballard/starphleet/master/provision/selfupdate | sudo bash
+#curl -L https://raw.github.com/yhat/starphleet/master/provision/selfupdate | sudo bash
 
-REMOTE="${STARPHLEET_REMOTE:-https://github.com/wballard/starphleet.git}"
+REMOTE="${STARPHLEET_REMOTE:-https://github.com/yhat/starphleet.git}"
 LOCAL="/starphleet"
 if [ -d "${LOCAL}" ]; then
   cd "${LOCAL}"
