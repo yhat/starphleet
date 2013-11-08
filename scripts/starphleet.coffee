@@ -121,7 +121,7 @@ Naming for our LB which defines a cluster
 ###
 hashname = ->
   url = process.env['STARPHLEET_HEADQUARTERS']
-  "starphleet-#{md5(url).substr(0,8)}"
+  "yhat-#{md5(url).substr(0,8)}"
 
 ###
 Init is all about setting up a .starphleet file with the key and url. This will
@@ -175,13 +175,13 @@ if options.init and options.ec2
         zone.describeSecurityGroups {}, nestedCallback
       #and make the security group if needed
       (groups, nestedCallback) ->
-        if _.some(groups.SecurityGroups, (x) -> x.GroupName is 'starphleet')
+        if _.some(groups.SecurityGroups, (x) -> x.GroupName is 'yhat')
           nestedCallback undefined, groups
         else
-          zone.createSecurityGroup {GroupName: 'starphleet', Description: 'Created by Starphleet'}, nestedCallback
+          zone.createSecurityGroup {GroupName: 'yhat', Description: 'Created by Yhat'}, nestedCallback
       #hook up all the ports into the security group
       (ignore, nestedCallback) ->
-        zone.describeSecurityGroups {GroupNames: ['starphleet']}, (err, groups) ->
+        zone.describeSecurityGroups {GroupNames: ['yhat']}, (err, groups) ->
           isThereBadNews err
           allowed_ports = [22, 80, 443]
           grantIfNeeded = (port, grantCallback) ->
@@ -189,7 +189,7 @@ if options.init and options.ec2
               grantCallback()
             else
               grant =
-                GroupName: 'starphleet'
+                GroupName: 'yhat'
                 IpPermissions: [
                   IpProtocol: 'tcp'
                   FromPort: port
@@ -228,7 +228,7 @@ if options.add and options.ship
       if process.env['STARPHLEET_PUBLIC_KEY']
         public_key_content =
           new Buffer(fs.readFileSync(process.env['STARPHLEET_PUBLIC_KEY'], 'utf8')).toString('base64')
-        public_key_name = "starphleet-#{md5(public_key_content).substr(0,8)}"
+        public_key_name = "yhat-#{md5(public_key_content).substr(0,8)}"
         zone.describeKeyPairs {}, (err, keyFob) ->
           #adding if we lack the key
           if _.some(keyFob.KeyPairs, (x) -> x.KeyName is public_key_name)
@@ -254,7 +254,7 @@ if options.add and options.ship
         MinCount: 1
         MaxCount: 1
         KeyName: public_key_name
-        SecurityGroups: ['starphleet']
+        SecurityGroups: ['yhat']
         UserData: new Buffer(user_data).toString('base64')
         InstanceType:  process.env['EC2_INSTANCE_SIZE'] or 'm2.xlarge'
       zone.runInstances todo, callback
