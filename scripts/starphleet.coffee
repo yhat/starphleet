@@ -336,7 +336,7 @@ if options.info and options.ec2
           lb.push 'Load Balancer': balancer.DNSName
           lb.push 'Hosts': hosts.toString()
           console.log lb.toString()
-          console.log "Dashboards are at", "http://<host>/starphleet/dashboard".cyan
+          console.log "Open the admin console", "http://<host>/".cyan
           console.log "Remember to", "ssh ubuntu@<host>".cyan
     else
       console.log "do 'starphleet add ship ec2 [region]' to get started\nvalid regions #{_.map(zones, (x) -> x.config.region)}".yellow
