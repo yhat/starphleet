@@ -1,6 +1,6 @@
 {
   "name": "starphleet",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "The fully open container based continuous deployment PaaS.",
   "bin": {
     "docopt.py": "./scripts/docopt.py",
