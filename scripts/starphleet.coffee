@@ -120,8 +120,9 @@ async.join = (array, mapper, propertyName, callback) ->
 Naming for our LB which defines a cluster
 ###
 hashname = ->
+  name = process.env['YHAT_SERVERID'] || 'myserver'
   url = process.env['STARPHLEET_HEADQUARTERS']
-  "yhat-#{md5(url).substr(0,8)}"
+  "#{name}-yhat-#{md5(url).substr(0,8)}"
 
 ###
 Init is all about setting up a .starphleet file with the key and url. This will
